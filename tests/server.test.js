@@ -1,8 +1,6 @@
 // @ts-nocheck
 import {describe, it, expect} from 'vitest';
 import {createSanityClient, imageRefToSanityCompatibleURL} from '../src/routes/+page.server';
-
-
 describe('createSanityClient Test', () => {
     it('creates a Sanity client with the correct configuration when env variables are defined', () => {
         const sanityClient = createSanityClient();
@@ -27,5 +25,3 @@ describe('imageRefToSanityCompatibleURL', () =>{
         expect(() => imageRefToSanityCompatibleURL("image-e34df65ad4b942a2b2aee73e4ab1ae11-406x233-mkv")).toThrowError("Invalid asset reference, asset reference does not contain a file extension! Only GIF, PNG, JPG, and WEBP are supported");
     });
 });
-
-
