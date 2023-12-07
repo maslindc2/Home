@@ -325,9 +325,7 @@ async function fetchAirQuality() {
         console.error("Error fetching air quality:", error);
     }
 }
-
 export {createSanityClient, imageRefToSanityCompatibleURL, fetchGIF, fetchWeather, fetchAirQuality, fetchBookmarkGroup, fetchSearchProviders, fetchBackground};
-
 export async function load() {
     // Create our sanity client instance using the ENV variables
     const client = createSanityClient(SANITY_PROJECT_ID, SANITY_DATA_SET);
