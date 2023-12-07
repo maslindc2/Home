@@ -1,20 +1,13 @@
-name: Node.js CI
+name: CI
 
 on:
-  push:
-    branches: [ "testing" ]
   pull_request:
-    branches: [ "testing" ]
-
+    branches: 
+    - master
 jobs:
-  build:
-
+  ci:
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [16.x]
-
+    
     env:
       SENSOR_LOCATION: ${{ secrets.SENSOR_LOCATION }}
       PURPLE_AIR_API_KEY: ${{ secrets.PURPLE_AIR_API_KEY }}
@@ -23,14 +16,13 @@ jobs:
       WEATHER_API_KEY: ${{ secrets.WEATHER_API_KEY }}
       OPENWEATHER_MAP_API_KEY: ${{ secrets.OPENWEATHER_MAP_API_KEY }}
       ZIP_CODE: ${{ secrets.ZIP_CODE }}
+      
     steps:
-      - uses: actions/checkout@v3
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node-version }}
-          cache: 'npm'
-      - name: Execute Unit Tests
-        run: |
-          npm ci
-          npm run test:unit
+    - uses: actions/checkout@v4
+    - uses: actions/setup-node@v4
+      with:
+        node-version: lts/*
+        cache: 'npm'
+    - run: npm ci
+    - run: npm run build --if-present
+    - run: npm test
