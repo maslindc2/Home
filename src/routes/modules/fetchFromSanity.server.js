@@ -31,6 +31,7 @@ export async function fetchGIF(client) {
     
     // Next get the reference tag for the randomly chosen gif
     const randomGifAssetRef = gifsData[randomGifIndex].gif.asset._ref;
+
     return imageRefToSanityCompatibleURL(randomGifAssetRef);
 }
 
@@ -41,29 +42,31 @@ export async function fetchGIF(client) {
  * @returns {object} - Returns an object of bookmarks for the bookmark group we specified in the params
  */
 export async function fetchBookmarkGroup(client, bookmarkGroupToFetch) {
-    try {
-        // Fetch the bookmark1 dataset from Sanity                
-        const res = await client.fetch(`*[_type == "${bookmarkGroupToFetch}"]`)
-        // Build a bookmarkGroup array using the response from Sanity
-        const bookmarkGroup = res.map((bookmark) => {
-            // Store the icon reference for the current bookmark
-            const iconRef = bookmark.icon.asset._ref;
-
-            // Send the icon reference to our reference to url function and store the returned url to our icon
-            const iconUrl = imageRefToSanityCompatibleURL(iconRef);
-            
-            // add the iconUrl and the bookmark url to the array
-            return {
-                Icon: iconUrl,
-                URL: bookmark.url,
-            }; 
-        })
-        // return the bookmarkGroup array
-        return bookmarkGroup
-    } catch(error){
-        console.error(`Error fetching bookmark data for ${bookmarkGroupToFetch} from Sanity:`, error);
-        return [];
+    if((!client && !bookmarkGroupToFetch) || !client || !bookmarkGroupToFetch){
+        throw new Error("Client/Bookmark Group is not defined please check configuration!");
     }
+
+    // Fetch the bookmark1 dataset from Sanity                
+    const res = await client.fetch(`*[_type == "${bookmarkGroupToFetch}"]`)
+    if (res.length === 0){
+        throw new Error(`Error fetching bookmark data for ${bookmarkGroupToFetch} from Sanity`);
+    }
+    // Build a bookmarkGroup array using the response from Sanity
+    const bookmarkGroup = res.map((bookmark) => {
+        // Store the icon reference for the current bookmark
+        const iconRef = bookmark.icon.asset._ref;
+
+        // Send the icon reference to our reference to url function and store the returned url to our icon
+        const iconUrl = imageRefToSanityCompatibleURL(iconRef);
+        
+        // add the iconUrl and the bookmark url to the array
+        return {
+            Icon: iconUrl,
+            URL: bookmark.url,
+        }; 
+    })
+    // return the bookmarkGroup array
+    return bookmarkGroup;
 }
 
 /**
@@ -72,22 +75,24 @@ export async function fetchBookmarkGroup(client, bookmarkGroupToFetch) {
  * @returns {object} - An object with the list of search providers
  */
 export async function fetchSearchProviders(client) {
-    try {
-        // Fetch the bookmark1 dataset from Sanity
-        const res = await client.fetch(`*[_type == "searchProviders"]`)
-        // Build a bookmarkGroup array using the response from Sanity
-        const searchProviders = res.map((/** @type {{ access: string; provider: string; url: string; }} */ searchProvider) => {
-            // add the iconUrl and the bookmark url to the array
-            return {
-                "Access": searchProvider.access,
-                "Provider": searchProvider.provider,
-                "URL": searchProvider.url
-            }; 
-        })
-        // return the bookmarkGroup array
-        return searchProviders
-    } catch(error){
-        console.error("Error fetching search providers from Sanity:", error);
-        return [];
+    if(!client){
+        throw new Error("Sanity Client is undefined!")
     }
+    // Fetch the bookmark1 dataset from Sanity
+    const res = await client.fetch(`*[_type == "searchProviders"]`)
+    if (res.length === 0){
+        throw new Error("Failed to fetch search providers from Sanity CMS!");
+        
+    }
+    // Build a bookmarkGroup array using the response from Sanity
+    const searchProviders = res.map((/** @type {{ access: string; provider: string; url: string; }} */ searchProvider) => {
+        // add the iconUrl and the bookmark url to the array
+        return {
+            "Access": searchProvider.access,
+            "Provider": searchProvider.provider,
+            "URL": searchProvider.url
+        }; 
+    });
+    // return the bookmarkGroup array
+    return searchProviders;
 }
