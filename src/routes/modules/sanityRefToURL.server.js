@@ -37,6 +37,6 @@ export function imageRefToSanityCompatibleURL(assetRef) {
     const baseURL = `https://cdn.sanity.io/images/${SANITY_PROJECT_ID}/${SANITY_DATA_SET}/`;
 
     // Use the file name we extracted and the file extension we extracted to build out the url we will use to fetch the gif
-    const fileURL = `${baseURL}${assetRefList[1]}.${assetRefList[3]}`;
+    const fileURL = `${baseURL}${assetRefList[1]}-${assetRefList[2]}.${assetRefList[3]}`;
     return fileURL;
 }
