@@ -16,3 +16,11 @@ This is currently the rebuild of my startpage project. My original project works
 
 - Use PlayWright to handle UI tests, more to come later.
 - Currently need to develop a Mock API for testing the backup API Weather API functions.
+
+#### Useful npm commands
+Coverage reports: `npm run coverage`
+Vitest UI with Coverage Reports: `npm run ui`
+Run Development: `npm run dev`
+Run Tests: `npm run tests`
+Run Prettier and ESlint: `npm run lint`
+Format with Prettier: `npm format`
