@@ -2,13 +2,13 @@ name: CI
 
 on:
   pull_request:
-    branches: 
-    - master
+    branches:
+      - master
 jobs:
   ci:
     name: NodeCI
     runs-on: ubuntu-latest
-    
+
     env:
       SENSOR_LOCATION: ${{ secrets.SENSOR_LOCATION }}
       PURPLE_AIR_API_KEY: ${{ secrets.PURPLE_AIR_API_KEY }}
@@ -17,13 +17,13 @@ jobs:
       WEATHER_API_KEY: ${{ secrets.WEATHER_API_KEY }}
       OPENWEATHER_MAP_API_KEY: ${{ secrets.OPENWEATHER_MAP_API_KEY }}
       ZIP_CODE: ${{ secrets.ZIP_CODE }}
-      
+
     steps:
-    - uses: actions/checkout@v4
-    - uses: actions/setup-node@v4
-      with:
-        node-version: lts/*
-        cache: 'npm'
-    - run: npm ci 
-    - run: npm run build --if-present
-    - run: npm test
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+          cache: 'npm'
+      - run: npm ci
+      - run: npm run build --if-present
+      - run: npm test

@@ -4,12 +4,10 @@ import { defineConfig } from 'vitest/config';
 export default defineConfig({
 	plugins: [sveltekit()],
 	test: {
-		coverage:{
+		coverage: {
 			reporter: ['text', 'json', 'html'],
-			include: [
-				'src/**'
-			]
+			include: ['src/**']
 		},
-		include: ['tests/*.{test,spec}.{js,ts}'],
+		include: ['tests/*.{test,spec}.{js,ts}']
 	}
 });
