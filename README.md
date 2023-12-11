@@ -18,6 +18,7 @@ This is currently the rebuild of my startpage project. My original project works
 - Currently need to develop a Mock API for testing the backup API Weather API functions.
 
 #### Useful npm commands
+
 Coverage reports: `npm run coverage`
 Vitest UI with Coverage Reports: `npm run ui`
 Run Development: `npm run dev`

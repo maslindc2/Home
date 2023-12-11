@@ -18,22 +18,24 @@ export async function fetchAirQuality() {
 	});
 
 	// If we did not receive response ok headers then we know we failed to fetch data from the sensor
-	// TODO: Replace this with alternate API for AQI
 	if (!response.ok) {
-		throw new Error(`Failed to fetch data: ${response.status}`);
+		throw new Error('Failed to fetch data');
+	} else {
+		// Store the json data
+		const data = await response.json();
+		// Extract the pm2.5_10minute stats from the data
+		const pm25 = data.sensor.stats_a['pm2.5_10minute'];
+		// Calculate the AQI using the pm2.5 data
+		const aqi = calculateAQI(pm25);
+		// Call the Interpret AQI to find the correct air quality label
+		// @ts-ignore
+		const aqiLabel = interpretAQI(aqi);
+		// Return the label and the air quality
+		return {
+			AirQuality: `${aqiLabel} (${aqi})`,
+			Sensor: SENSOR_LOCATION
+		};
 	}
-
-	// Store the json data
-	const data = await response.json();
-	// Extract the pm2.5_10minute stats from the data
-	const pm25 = data.sensor.stats_a['pm2.5_10minute'];
-	// Calculate the AQI using the pm2.5 data
-	const aqi = calculateAQI(pm25);
-	// Call the Interpret AQI to find the correct air quality label
-	// @ts-ignore
-	const aqiLabel = interpretAQI(aqi);
-	// Return the label and the air quality
-	return aqiLabel + ` (${aqi})`;
 }
 
 /**
