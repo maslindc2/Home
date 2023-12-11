@@ -8,7 +8,7 @@ This is currently the rebuild of my startpage project. My original project works
 
 - Develop unit tests for "+page.server.js" functions.
 - [x] Sanity CMS Client Tests for client configuration and imageRefToSanityCompatibleURL function. (Rename is in progress for that)
-- [ ] Need Unit Tests for fetch weather from Weather API and the backup Open Weather Map
+- [x] Need Unit Tests for fetch weather from Weather API and the backup Open Weather Map
 - [x] Need Tests for Air Quality
 - [x] Need Tests for fetch from Sanity functions (bookmark groups, search providers, GIFS, and Background Image)
 
@@ -18,6 +18,7 @@ This is currently the rebuild of my startpage project. My original project works
 - Currently need to develop a Mock API for testing the backup API Weather API functions.
 
 #### Useful npm commands
+
 Coverage reports: `npm run coverage`
 Vitest UI with Coverage Reports: `npm run ui`
 Run Development: `npm run dev`
