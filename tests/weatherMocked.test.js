@@ -1,6 +1,6 @@
 // @ts-nocheck
 
-import * as fetchWeather from '../src/routes/modules/weather.server';
+import * as fetchWeather from '../src/api/weather.server';
 import { describe, it, expect, vi } from 'vitest';
 import { WEATHER_API_KEY, ZIP_CODE, OPENWEATHER_MAP_API_KEY } from '$env/static/private';
 

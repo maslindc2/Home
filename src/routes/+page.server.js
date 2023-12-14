@@ -1,7 +1,7 @@
 // @ts-nocheck
-import * as fetchFromSanity from './modules/fetchFromSanity.server.js';
-import { fetchAirQuality } from './modules/airQuality.server.js';
-import { fetchWeather } from './modules/weather.server.js';
+import * as fetchFromSanity from '../api/fetchFromSanity.server';
+import { fetchAirQuality } from '../api/airQuality.server.js';
+import { fetchWeather } from '../api/weather.server.js';
 import { SANITY_PROJECT_ID, SANITY_DATA_SET } from '$env/static/private';
 import { createClient } from '@sanity/client';
 

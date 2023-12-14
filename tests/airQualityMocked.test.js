@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { PURPLE_AIR_API_KEY, SENSOR_LOCATION } from '$env/static/private';
-import * as airQuality from '../src/routes/modules/airQuality.server';
+import * as airQuality from '../src/api/airQuality.server';
 import { describe, it, expect, vi, afterEach, beforeAll } from 'vitest';
 
 // Before all tests make a mock object of the airQuality and stub the calculateAQI and interpretAQI functions

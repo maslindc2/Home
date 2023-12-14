@@ -1,5 +1,6 @@
 <script>
 	// @ts-nocheck
+
 	let query = '',
 		provider = 'Search',
 		url = 'https://www.google.com/search?q=';
@@ -8,17 +9,7 @@
 
 	function handleKeyDown(event) {
 		if (event.code == 'Enter') {
-			if (query === '!help' || query === '!h') {
-				var availableCMDs = [];
-				for (const key in searchProviders) {
-					availableCMDs.push(
-						`${' ' + searchProviders[key].Access} : ${searchProviders[key].Provider}`
-					);
-				}
-				alert(' Below are the available commands for the search function \n' + availableCMDs);
-				query = '';
-			} else if (query.startsWith('!') && (query.length == 2 || query.length == 3)) {
-				// @ts-ignore
+			if (query.startsWith('!') && (query.length == 2 || query.length == 3)) {
 				var indexOfProvider = findProviderByAccess(query, searchProviders);
 				if (indexOfProvider !== undefined) {
 					provider = searchProviders[indexOfProvider].Provider;
@@ -30,14 +21,11 @@
 			}
 		}
 	}
+
 	function findProviderByAccess(query, providersArray) {
-		const foundProvider = providersArray.find(
-			(/** @type {{ Access: string; }} */ provider) => provider.Access === query
-		);
+		const foundProvider = providersArray.find((provider) => provider.Access === query);
 		if (foundProvider) {
 			return providersArray.indexOf(foundProvider);
-		} else {
-			console.error('Search provider not found');
 		}
 	}
 </script>
