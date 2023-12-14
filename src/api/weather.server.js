@@ -37,7 +37,7 @@ export async function fetchWeather() {
  * @returns - Returns the current weather format in the same format as Weather API
  */
 export async function fetchWeatherFromBackupAPI() {
-	console.log("Fetching Weather from Backup API!");
+	console.log('Fetching Weather from Backup API!');
 	// Here we contact the OpenWeatherApi to convert our zip code into latitude and longitude
 	const openWeatherLocation = await fetch(
 		`http://api.openweathermap.org/geo/1.0/zip?zip=${ZIP_CODE},US&appid=${OPENWEATHER_MAP_API_KEY}`

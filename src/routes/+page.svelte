@@ -2,13 +2,14 @@
 	// @ts-nocheck
 
 	export let data;
-	import GifFrame from './widgets/GifFrame.svelte';
-	import Bookmark1 from './widgets/Bookmark1.svelte';
-	import Bookmark2 from './widgets/Bookmark2.svelte';
-	import Date from './widgets/Date.svelte';
-	import Weather from './widgets/Weather.svelte';
-	import Search from './widgets/Search.svelte';
-	import WindAndAir from './widgets/WindAndAir.svelte';
+	import GifFrame from '../widgets/GifFrame.svelte';
+	import Bookmark1 from '../widgets/Bookmark1.svelte';
+	import Bookmark2 from '../widgets/Bookmark2.svelte';
+	import Date from '../widgets/Date.svelte';
+	import Weather from '../widgets/Weather.svelte';
+	import Search from '../widgets/Search.svelte';
+	import SearchHelp from '../widgets/SearchHelp.svelte';
+	import WindAndAir from '../widgets/WindAndAir.svelte';
 </script>
 
 <svelte:head>
@@ -37,6 +38,7 @@
 	</div>
 	<div class="search">
 		<Search searchProviders={data.searchProviders} />
+		<SearchHelp />
 	</div>
 </div>
 
