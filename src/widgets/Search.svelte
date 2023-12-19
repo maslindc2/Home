@@ -1,6 +1,6 @@
 <script>
 	// @ts-nocheck
-
+	import SearchHelp from "./SearchHelp.svelte";
 	let query = '',
 		provider = 'Search',
 		url = 'https://www.google.com/search?q=';
@@ -34,6 +34,7 @@
 
 <div class="searchBox">
 	<input bind:value={query} type="text" placeholder={provider} />
+	<SearchHelp />
 </div>
 
 <style>
