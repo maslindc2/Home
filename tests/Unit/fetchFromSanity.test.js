@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { SANITY_PROJECT_ID, SANITY_DATA_SET } from '$env/static/private';
-import * as fetchFromSanity from '../src/api/fetchFromSanity.server';
+import * as fetchFromSanity from '../../src/api/fetchFromSanity.server';
 import { describe, it, expect, beforeAll, vi } from 'vitest';
 import { createClient } from '@sanity/client';
 

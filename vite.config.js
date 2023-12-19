@@ -8,6 +8,6 @@ export default defineConfig({
 			reporter: ['text', 'json', 'html'],
 			include: ['src/**']
 		},
-		include: ['tests/*.{test,spec}.{js,ts}']
+		include: ['tests/Unit/*.{test,spec}.{js,ts}']
 	}
 });

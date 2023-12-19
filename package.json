@@ -1,6 +1,6 @@
 {
 	"name": "home",
-	"version": "0.0.2",
+	"version": "1.0.2",
 	"private": true,
 	"scripts": {
 		"dev": "vite dev",
@@ -14,7 +14,8 @@
 		"test:integration": "playwright test",
 		"test:unit": "vitest",
 		"coverage": "vitest --coverage.enabled=true",
-		"ui": "vitest --ui --coverage.enabled=true"
+		"unit:ui": "vitest --ui --coverage.enabled=true",
+		"codegen":"npx playwright codegen http://localhost:4173"
 	},
 	"devDependencies": {
 		"@playwright/test": "^1.28.1",

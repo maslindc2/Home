@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { imageRefToSanityCompatibleURL } from '../src/api/sanityRefToURL.server.js';
+import { imageRefToSanityCompatibleURL } from '../../src/api/sanityRefToURL.server.js';
 import { SANITY_PROJECT_ID, SANITY_DATA_SET } from '$env/static/private';
 
 import { describe, it, expect, beforeAll } from 'vitest';
