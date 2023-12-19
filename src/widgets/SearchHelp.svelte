@@ -92,8 +92,8 @@
 		width: 30px;
 		height: 33px;
 		position: relative;
-		bottom: 2.7rem;
-		left: 28rem;
+		top: .3em;
+		right: 1em;
 		cursor: pointer;
 		transition: filter 0.3s ease-in-out;
 	}

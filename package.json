@@ -15,7 +15,7 @@
 		"test:unit": "vitest",
 		"coverage": "vitest --coverage.enabled=true",
 		"unit:ui": "vitest --ui --coverage.enabled=true",
-		"codegen":"npx playwright codegen http://localhost:4173"
+		"codegen": "npx playwright codegen http://localhost:4173"
 	},
 	"devDependencies": {
 		"@playwright/test": "^1.28.1",
@@ -38,6 +38,7 @@
 	"type": "module",
 	"dependencies": {
 		"@sanity/client": "^6.8.6",
-		"@vercel/analytics": "^1.1.1"
+		"@vercel/analytics": "^1.1.1",
+		"@vercel/speed-insights": "^1.0.2"
 	}
 }
