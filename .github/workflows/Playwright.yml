@@ -1,0 +1,30 @@
+name: Playwright Tests
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+jobs:
+  test:
+    name: 'PlaywrightUITests'
+    runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.40.0-jammy
+    env:
+      SENSOR_LOCATION: ${{ secrets.SENSOR_LOCATION }}
+      PURPLE_AIR_API_KEY: ${{ secrets.PURPLE_AIR_API_KEY }}
+      SANITY_DATA_SET: ${{ secrets.SANITY_DATA_SET }}
+      SANITY_PROJECT_ID: ${{ secrets.SANITY_PROJECT_ID }}
+      WEATHER_API_KEY: ${{ secrets.WEATHER_API_KEY }}
+      OPENWEATHER_MAP_API_KEY: ${{ secrets.OPENWEATHER_MAP_API_KEY }}
+      ZIP_CODE: ${{ secrets.ZIP_CODE }}
+      HOME: /root
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: lts/iron
+      - name: Install dependencies
+        run: npm ci
+      - name: Run Playwright tests
+        run: npx playwright tests
