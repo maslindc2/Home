@@ -1,9 +1,9 @@
 name: CI
-
 on:
+  push:
+    branches: [ main, master ]
   pull_request:
-    branches:
-      - master
+    branches: [ main, master ]
 jobs:
   ci:
     name: NodeCI
@@ -17,12 +17,11 @@ jobs:
       WEATHER_API_KEY: ${{ secrets.WEATHER_API_KEY }}
       OPENWEATHER_MAP_API_KEY: ${{ secrets.OPENWEATHER_MAP_API_KEY }}
       ZIP_CODE: ${{ secrets.ZIP_CODE }}
-
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: lts/*
+          node-version: lts/iron
           cache: 'npm'
       - run: npm ci
       - run: npm run build --if-present

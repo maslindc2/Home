@@ -1,6 +1,7 @@
 <script>
 	// @ts-nocheck
 	import { onMount } from 'svelte';
+	import SearchHelpIcon from '$lib/assets/help.png';
 
 	let dialog;
 	onMount(() => {
@@ -15,6 +16,7 @@
 	};
 </script>
 
+<!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
 <!-- svelte-ignore a11y-missing-attribute -->
 <dialog id="help-dialog">
 	<h1>Search Help</h1>
@@ -76,7 +78,14 @@
 	<button on:click={closeClick}>Close</button>
 </dialog>
 
-<img src="src/lib/assets/help.png" class="help-button" on:click={() => showDialogClick()} />
+<!-- svelte-ignore a11y-click-events-have-key-events -->
+<!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
+<img
+	src={SearchHelpIcon}
+	class="help-button"
+	on:click={() => showDialogClick()}
+	alt="Search Help Button"
+/>
 
 <style>
 	.help-button {
@@ -103,7 +112,7 @@
 		background: #242424;
 		transition:
 			background 2s,
-			color 2s; /* Only transition specific properties */
+			color 2s;
 	}
 
 	dialog {
@@ -113,7 +122,7 @@
 		background: #242424;
 		transition:
 			background 2s,
-			color 2s; /* Only transition specific properties */
+			color 2s;
 	}
 	dialog::backdrop {
 		background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7));
@@ -138,10 +147,7 @@
 		max-width: 600px; /* Adjust the max-width as needed */
 		margin-bottom: 20px;
 	}
-	#commands th,
-	#commands td {
-		padding: 8px;
-	}
+
 	button {
 		cursor: pointer;
 	}

@@ -1,8 +1,8 @@
 // @ts-nocheck
-import { load } from '../src/routes/+page.server';
-import * as fetchFromSanity from '../src/api/fetchFromSanity.server';
-import * as fetchWeather from '../src/api/weather.server';
-import * as fetchAirQuality from '../src/api/airQuality.server';
+import { load } from '../../src/routes/+page.server';
+import * as fetchFromSanity from '../../src/api/fetchFromSanity.server';
+import * as fetchWeather from '../../src/api/weather.server';
+import * as fetchAirQuality from '../../src/api/airQuality.server';
 import { describe, it, expect, vi } from 'vitest';
 
 describe('load function', () => {
