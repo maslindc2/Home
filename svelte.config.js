@@ -1,6 +1,9 @@
 import adapter from '@sveltejs/adapter-vercel';
-export default {
+const config = {
 	kit: {
-		adapter: adapter({})
-	}
+		adapter: adapter({
+			runtime: 'edge',
+		}),
+	},
 };
+export default config;
