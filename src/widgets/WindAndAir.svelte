@@ -9,19 +9,19 @@
 	<div class="w1">
 		<h3 style="margin: 0; text-align: center;">
 			<p id="feels">
-				{weather.current.wind_mph} mph
+				{weather.wind.wind_mph} mph
 			</p>
 		</h3>
 		<img
 			id="icon"
 			src={Compass}
 			alt="..."
-			style="transform: rotate({weather.current.wind_degree}deg);"
+			style="transform: rotate({weather.wind.wind_mph}deg);"
 		/>
 	</div>
 	<div class="w2">
 		<a id="sensorLink" href="https://map.purpleair.com/1/mAQI/a10/p604800/cC0?select={aqi.Sensor}">
-			Air: {aqi.AirQuality}
+			Air: {`${aqi.aqiLabel} (${aqi.AQI})`}
 		</a>
 	</div>
 </div>

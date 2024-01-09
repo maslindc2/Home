@@ -8,7 +8,6 @@
 	import Date from '../widgets/Date.svelte';
 	import Weather from '../widgets/Weather.svelte';
 	import Search from '../widgets/Search.svelte';
-	import SearchHelp from '../widgets/SearchHelp.svelte';
 	import WindAndAir from '../widgets/WindAndAir.svelte';
 	
 </script>
@@ -34,7 +33,7 @@
 			<Weather weather={data.weather} />
 		</div>
 		<div class="windAndAir">
-			<WindAndAir weather={data.weather} aqi={data.airQuality} />
+			<WindAndAir weather={data.weather} aqi={data.airQualityData} />
 		</div>
 	</div>
 	<div class="search">
