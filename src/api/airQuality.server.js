@@ -1,43 +1,4 @@
 // @ts-nocheck
-import { PURPLE_AIR_API_KEY, SENSOR_LOCATION } from '$env/static/private';
-
-/**
- * This function fetches the current Air quality from purple air's API.
- * Relies on the env variables for getting the location of the sensor and the API key for purple air.
- * @returns - The current AQI and the Air quality message for the Wind and Air widget.
- */
-export async function fetchAirQuality() {
-	if ((!PURPLE_AIR_API_KEY && !SENSOR_LOCATION) || !PURPLE_AIR_API_KEY || !SENSOR_LOCATION) {
-		throw new Error('Error with API or Sensor ENV var');
-	}
-	const sensorURL = `https://api.purpleair.com/v1/sensors/${SENSOR_LOCATION}?fields=pm2.5_10minute_a`;
-	const response = await fetch(sensorURL, {
-		headers: {
-			'X-API-KEY': PURPLE_AIR_API_KEY
-		}
-	});
-
-	// If we did not receive response ok headers then we know we failed to fetch data from the sensor
-	if (!response.ok) {
-		throw new Error('Failed to fetch data');
-	} else {
-		// Store the json data
-		const data = await response.json();
-		// Extract the pm2.5_10minute stats from the data
-		const pm25 = data.sensor.stats_a['pm2.5_10minute'];
-		// Calculate the AQI using the pm2.5 data
-		const aqi = calculateAQI(pm25);
-		// Call the Interpret AQI to find the correct air quality label
-		// @ts-ignore
-		const aqiLabel = interpretAQI(aqi);
-		// Return the label and the air quality
-		return {
-			AirQuality: `${aqiLabel} (${aqi})`,
-			Sensor: SENSOR_LOCATION
-		};
-	}
-}
-
 /**
  * This function is used for calculating the AQI. This is used for the air quality widget.
  * @param {*} pm25 - The current PM2.5 from the purple air station.  This station is defined from the env SENSOR_LOCATION

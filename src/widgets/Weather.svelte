@@ -6,15 +6,15 @@
 <div class="weatherContainer">
 	<div class="w1">
 		<h3 style="margin: 0; text-align: center;">
-			{Math.round(weather.current.temp_f)}°<br />
+			{Math.round(weather.temp_f)}°<br />
 			<p id="feels">
-				feels like {Math.round(weather.current.feelslike_f)}°
+				feels like {Math.round(weather.feelslike_f)}°
 			</p>
 		</h3>
-		<img id="icon" src="http://{weather.current.condition.icon}" alt="..." />
+		<img id="icon" src="{weather.condition.icon}" alt="..." />
 	</div>
 	<div style="margin: 0;" class="w2">
-		{weather.current.condition.text}
+		{weather.condition.text}
 	</div>
 </div>
 
