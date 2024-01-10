@@ -1,6 +1,5 @@
 <script>
 	// @ts-nocheck
-
 	export let data;
 	import GifFrame from '../widgets/GifFrame.svelte';
 	import Bookmark1 from '../widgets/Bookmark1.svelte';
@@ -9,37 +8,70 @@
 	import Weather from '../widgets/Weather.svelte';
 	import Search from '../widgets/Search.svelte';
 	import WindAndAir from '../widgets/WindAndAir.svelte';
+	import { fetchCurrentConditions } from '../api/fetchFromExpress';
+	import {onMount} from 'svelte';
 	
+	let currentConditions;
+
+	onMount(async () => {
+		try {
+			// Attempt to get the user's location from the browser
+			const position = await new Promise((resolve, reject) => {
+        		navigator.geolocation.getCurrentPosition(resolve, reject);
+    		});
+
+			// Store the latitude and longitude to the variable coordinates
+			// It must be a string as the express server is expecting it like this
+			const coordinates = `${position.coords.latitude},${position.coords.longitude}`
+			
+			// Hardcoding the purple air sensor
+			const sensor = "55751";
+
+			// Fetch the current conditions using fetchFromExpress with the coordinates and the purple air sensor
+			currentConditions = await fetchCurrentConditions(coordinates, sensor);
+
+		} catch (error) {
+			// If the user blocks location use a backup aka Honolulu for their location
+			const coordinates = "21.3281736,-157.8814738";
+			// Still hardcoding the sensor for purple air
+			const sensor = "55751";
+			// Fetch the current conditions for Honolulu
+			currentConditions = await fetchCurrentConditions(coordinates, sensor);
+		}
+	});
+
 </script>
 
 <svelte:head>
 	<title>Home</title>
 </svelte:head>
-<div class="center" style="--image: url({data.background});">
-	<div class="parent">
-		<div class="date">
-			<Date />
+{#if currentConditions && currentConditions.weather}
+	<div class="center" style="--image: url({data.background});">
+		<div class="parent">
+			<div class="date">
+				<Date />
+			</div>
+			<div class="bongoGif">
+				<GifFrame randomGif={data.gifs} />
+			</div>
+			<div class="bookmark1">
+				<Bookmark1 bookmarks={data.bookmarkGroup1} />
+			</div>
+			<div class="bookmark2">
+				<Bookmark2 bookmarks={data.bookmarkGroup2} />
+			</div>
+			<div class="weather">
+				<Weather weather={currentConditions.weather} />
+			</div>
+			<div class="windAndAir">
+				<WindAndAir weather={currentConditions.weather} aqi={currentConditions.airQualityData} />
+			</div>
 		</div>
-		<div class="bongoGif">
-			<GifFrame randomGif={data.gifs} />
-		</div>
-		<div class="bookmark1">
-			<Bookmark1 bookmarks={data.bookmarkGroup1} />
-		</div>
-		<div class="bookmark2">
-			<Bookmark2 bookmarks={data.bookmarkGroup2} />
-		</div>
-		<div class="weather">
-			<Weather weather={data.weather} />
-		</div>
-		<div class="windAndAir">
-			<WindAndAir weather={data.weather} aqi={data.airQualityData} />
+		<div class="search">
+			<Search searchProviders={data.searchProviders} />
 		</div>
 	</div>
-	<div class="search">
-		<Search searchProviders={data.searchProviders} />
-	</div>
-</div>
+{/if}
 
 <style>
 	.center {

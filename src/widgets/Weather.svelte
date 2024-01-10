@@ -8,7 +8,7 @@
 		<h3 style="margin: 0; text-align: center;">
 			{Math.round(weather.temp_f)}°<br />
 			<p id="feels">
-				feels like {Math.round(weather.feelslike_f)}°
+				feels like {Math.round(weather.feelsLike_f)}°
 			</p>
 		</h3>
 		<img id="icon" src="{weather.condition.icon}" alt="..." />
