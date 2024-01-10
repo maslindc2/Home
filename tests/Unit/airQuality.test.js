@@ -1,4 +1,4 @@
-import * as airQuality from '../../src/api/airQuality.server';
+import * as airQuality from '../../src/api/airQuality';
 import { describe, test, expect } from 'vitest';
 
 describe('Test calculate AQI function', () => {

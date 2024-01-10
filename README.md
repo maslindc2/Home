@@ -19,7 +19,6 @@ This serves as an ongoing project for learning full-stack development. We have c
 #### Development/Future Plans
 Much like a real home it's always a work in progress, here's what we got in store for the future.
 ##### Milestone 3
-- Implement location services. Currently relies on an env variable for the current location to fetch Weather/Wind and Air Quality.
 - Create cookies for setting/remembering Light and Dark mode options.  Only dark mode is supported currently.
 ##### Milestone 4
 - Moving from Sanity CMS to a database that allows for multiple users to create their own home.  Currently the only way to customize Home is through creating your own [Sanity Studio](https://www.sanity.io/studio), Open Weather Map, Purple Air, and Weather API keys. By moving to a centralized database the user can easily sign-in and can bring their own Home wherever they go.  The current plan is to use Firebase, allowing anyone to easily configure and set up their own Home. 
