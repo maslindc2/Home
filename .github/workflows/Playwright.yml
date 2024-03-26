@@ -9,7 +9,7 @@ jobs:
     name: 'PlaywrightUITests'
     runs-on: ubuntu-latest
     container:
-      image: mcr.microsoft.com/playwright:v1.40.0-jammy
+      image: mcr.microsoft.com/playwright:latest
     env:
       SENSOR_LOCATION: ${{ secrets.SENSOR_LOCATION }}
       PURPLE_AIR_API_KEY: ${{ secrets.PURPLE_AIR_API_KEY }}
@@ -18,7 +18,6 @@ jobs:
       WEATHER_API_KEY: ${{ secrets.WEATHER_API_KEY }}
       OPENWEATHER_MAP_API_KEY: ${{ secrets.OPENWEATHER_MAP_API_KEY }}
       ZIP_CODE: ${{ secrets.ZIP_CODE }}
-      HOME: /root
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
