@@ -38,4 +38,8 @@ jobs:
           title: ${{ env.pr_title }}
           body: 'Automated changes by GitHub Actions'
           branch: automated-npm-update
-          delete-branch: true
+      - name: Automerge After Passed Checks
+        run: gh pr merge --merge --auto "1"
+        env: 
+          GH_TOKEN: ${{ secrets.BOT_TOKEN }}
+      
