@@ -38,8 +38,11 @@ jobs:
           title: ${{ env.pr_title }}
           body: 'Automated changes by GitHub Actions'
           branch: automated-npm-update
-      - name: Automerge After Passed Checks
-        run: gh pr merge --merge --auto "1"
+  auto-merge-changes:
+    needs: npm-update
+    runs-on: ubuntu-latest
+    steps:
+      - name: Automerge After Successful CI/CD Checks
+        run: gh pr merge --merge --auto "${{ steps.create-pull-request.outputs.pull-request-number }}"
         env: 
           GH_TOKEN: ${{ secrets.BOT_TOKEN }}
-      
